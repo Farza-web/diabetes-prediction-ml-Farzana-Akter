@@ -1,47 +1,102 @@
 # Diabetes Prediction System
-**Project Summary**
 
-### 1. Problem Statement
+## Project Overview
 
-Diabetes is an important health concern, and identifying patterns related to diabetes can help us better understand the factors associated with it. The main objective of this project is to develop a machine learning system that can classify whether a survey record indicates diabetes or prediabetes based on different health and lifestyle-related features. This project is developed for educational purposes and does not provide medical diagnoses.
+This project is a machine learning-based Diabetes Prediction System developed as part of an academic project. The main goal is to predict whether a survey record indicates diabetes or prediabetes based on different health and lifestyle-related features.
 
-### 2. Dataset Description
+In this project, I explored the dataset, performed data preprocessing, trained multiple machine learning models, and compared their performance using different evaluation metrics.
 
-For this project, I used the CDC Diabetes Health Indicators dataset, which is based on the 2015 Behavioral Risk Factor Surveillance System (BRFSS) survey. The dataset contains 253,680 records, 21 input features, and one target variable named `Diabetes_binary`. The target has two classes: 0 represents no diabetes indicator, while 1 represents diabetes or prediabetes. The dataset includes information such as BMI, age, general health, high blood pressure, physical activity, and other health-related indicators.
+**Note:** This project is developed for educational purposes only. It is not a medical diagnosis system.
 
-### 3. Data Preprocessing
+## Dataset
 
-First, I checked the dataset for missing values, duplicate records, data types, and possible invalid values. No missing values were found. I kept the original records rather than removing duplicate rows without proper justification. Then, I separated the input features from the target variable and divided the data into 80% training and 20% testing sets using stratified sampling. A preprocessing pipeline was used to prepare the features and apply scaling where needed.
+I used the **CDC Diabetes Health Indicators Dataset**, which is based on the 2015 Behavioral Risk Factor Surveillance System (BRFSS) survey.
 
-### 4. Model Training and Best Model
+- Dataset source: [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/891)
+- Total records: 253,680
+- Input features: 21
+- Target variable: `Diabetes_binary`
 
-I trained and compared three machine learning algorithms: Logistic Regression, Linear SVM, and Random Forest. Among these models, Logistic Regression achieved the highest positive-class F1-score and was selected for the prediction demonstration.
+### Target Classes
 
-Its test performance was:
+- `0`: No diabetes indicator
+- `1`: Diabetes or prediabetes indicator
 
-- Accuracy: **73.16%**
-- Precision: **31.08%**
-- Recall: **76.12%**
-- F1-score: **44.14%**
-- ROC-AUC: **0.8196**
-- PR-AUC: **0.3926**
+The dataset includes health and lifestyle-related information such as BMI, Age, General Health, High Blood Pressure, Physical Activity, and other indicators.
 
-Although Random Forest achieved higher accuracy (83.61%), its positive-class recall was lower (41.27%). Therefore, I considered positive-class F1-score and recall instead of selecting a model based only on accuracy.
+## Data Preprocessing
 
-### 5. Major Findings from EDA
+The following preprocessing steps were performed:
 
-The exploratory data analysis showed three important observations:
+1. Checked missing values and duplicate records.
+2. Checked data types and feature values.
+3. Separated input features and target variable.
+4. Split the dataset into 80% training and 20% testing data using stratified sampling.
+5. Used preprocessing pipelines for feature preparation and scaling where needed.
+6. Handled class imbalance using class weights in the classification models.
 
-1. **Age:** The diabetes indicator rate generally increased across age categories, reaching approximately 21.85% in age category 11 before decreasing slightly in the following categories.
+## Machine Learning Models
 
-2. **General Health:** The diabetes indicator rate increased from 2.52% in the best general health category to 37.89% in the poorest general health category.
+Three machine learning algorithms were trained and compared:
 
-3. **High Blood Pressure:** The diabetes indicator rate was approximately 6.04% among respondents without high blood pressure, compared with 24.45% among respondents with high blood pressure.
+- Logistic Regression
+- Linear Support Vector Machine (SVM)
+- Random Forest
 
-These findings show associations between health-related features and the diabetes indicator in the dataset. They do not prove cause-and-effect relationships.
+## Model Comparison
 
-### 6. Limitation
+The models were evaluated using Accuracy, Precision, Recall, F1-score, ROC-AUC, and PR-AUC.
 
-One major limitation of this project is that the dataset is based on self-reported survey responses from 2015. Therefore, the information may contain reporting errors and may not represent current health conditions. The model has not been clinically validated and should not be used for medical diagnosis or treatment decisions.
+| Model | Accuracy | Precision (Class 1) | Recall (Class 1) | F1-score (Class 1) | ROC-AUC | PR-AUC |
+|---|---:|---:|---:|---:|---:|---:|
+| Logistic Regression | 0.7316 | 0.3108 | 0.7612 | **0.4414** | **0.8196** | 0.3926 |
+| Linear SVM | 0.7275 | 0.3083 | **0.7686** | 0.4400 | 0.8194 | 0.3936 |
+| Random Forest | **0.8361** | **0.4120** | 0.4127 | 0.4127 | 0.8123 | **0.3998** |
 
-**Conclusion:** Through this project, I learned how to explore a real-world dataset, prepare data, train machine learning models, compare their performance, and understand the importance of evaluating models on imbalanced data. The project also helped me understand why accuracy alone is not enough to select the best classification model.
+### Selected Model
+
+Logistic Regression was selected for the educational prediction demonstration because it achieved the highest positive-class F1-score (0.4414).
+
+Although Random Forest achieved higher accuracy, Logistic Regression identified a larger proportion of positive cases.
+
+## Exploratory Data Analysis Findings
+
+Some important observations from the dataset:
+
+1. The dataset contains approximately 86.07% negative-class records and 13.93% positive-class records.
+2. The diabetes indicator rate generally increases across age categories.
+3. The diabetes indicator rate increases with poorer general health.
+4. Respondents with high blood pressure have a higher observed diabetes indicator rate than those without high blood pressure.
+
+## How to Run the Project
+
+### Requirements
+
+- Python 3.x
+- Jupyter Notebook or Kaggle Notebook
+
+### Steps
+
+1. Download the dataset from the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/891).
+2. Open the project notebook in Jupyter Notebook or Kaggle.
+3. Add the dataset to your Kaggle notebook if you are using Kaggle.
+4. Update the dataset file path if necessary.
+5. Run the notebook cells in order.
+6. Review the model comparison and try the prediction demonstration.
+
+## Limitations
+
+- The dataset is based on self-reported survey responses from 2015.
+- The dataset may contain reporting errors.
+- The model has not been clinically validated.
+- Class imbalance affects model performance.
+
+## Responsible Use Disclaimer
+
+This project is developed strictly for educational and academic purposes. The predictions and estimated probabilities are based on historical survey data and must not be used for medical diagnosis, treatment decisions, or personal healthcare decisions.
+
+## Author
+
+**Name:** Farzana Akter  
+**Project:** Diabetes Prediction System  
+**Repository:** diabetes-prediction-ml-farzana-akter
